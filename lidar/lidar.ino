@@ -1,28 +1,47 @@
 #include <SoftwareSerial.h>
 #include "TFMini.h"
 
-SoftwareSerial mySerial(10, 11);      // Uno RX (TFMINI TX), Uno TX (TFMINI RX)
+//Arduino 19 -> Tfmini Green [TX]
+//Arduino 20 -> Tfmini Blue [RX]
 TFMini tfmini;
 
 void setup() {
   Serial.begin(115200);
+  Serial1.begin(TFMINI_BAUDRATE);
+  Serial1.setTimeout(5);
   while (!Serial);
   Serial.println ("Initializing...");
-  mySerial.begin(TFMINI_BAUDRATE);
-  tfmini.begin(&mySerial);    
+  tfmini.begin(&Serial1);
 }
 
 
 void loop() {
-  // Take one TF Mini distance measurement
+  //-------------------
+  long a = micros();
   uint16_t dist = tfmini.getDistance();
-  uint16_t strength = tfmini.getRecentSignalStrength();
+  String strDist=convertDistance(dist);
+  long b = micros() - a;
+  //-------------- 230 - 350 microsecond
+  Serial.print(strDist);
+  Serial.print(" cm  time");
+  Serial.println(b);
 
-  // Display the measurement
-  Serial.print(dist);
-  Serial.print(" cm      sigstr: ");
-  Serial.println(strength);
+  delay(50);
+}
 
-  // Wait some short time before taking the next measurement
-  delay(25);  
+String convertDistance(uint16_t dist) {
+  if (dist > 9999)
+    dist = 9999;
+    
+  String strValue = "";
+  if (dist < 10) {
+    strValue = "000" + String(dist);
+  }else if (dist < 100) {
+    strValue = "00" + String(dist);
+  }else if (dist < 1000) {
+    strValue = "0" + String(dist);
+  }else if (dist < 10000) {
+    strValue = String(dist);
+  }
+  return strValue;
 }
