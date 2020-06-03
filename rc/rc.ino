@@ -66,7 +66,7 @@ void configureChannelMapping() {
 }
 
 /**
- * This Interrupt Sub Routine is called each time input 8, 9, 10 or 11 changed state.
+ * This Interrupt Sub Routine is called each time input 10, 11, 12 or 13 changed state.
  * Read the receiver signals in order to get flight instructions.
  *
  * This routine must be as fast as possible to prevent main program to be messed up.

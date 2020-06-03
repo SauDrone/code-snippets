@@ -1,4 +1,3 @@
-#include <SoftwareSerial.h>
 #include "TFMini.h"
 
 //Arduino 19 -> Tfmini Green [TX]
