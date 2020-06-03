@@ -83,48 +83,48 @@ ISR(PCINT0_vect) {
         // Channel 1 -------------------------------------------------
         //PB4= pin 10
         if (PINB & B00010000) {                                        // Is input 10 high ?
-            if (previous_state[mode_mapping[YAW]] == LOW) {                     // Input 10 changed from 0 to 1 (rising edge)
-                previous_state[mode_mapping[YAW]] = HIGH;                       // Save current state
-                timer[mode_mapping[YAW]] = current_time;                        // Save current time
+            if (previous_state[mode_mapping[ROLL]] == LOW) {                     // Input 10 changed from 0 to 1 (rising edge)
+                previous_state[mode_mapping[ROLL]] = HIGH;                       // Save current state
+                timer[mode_mapping[ROLL]] = current_time;                        // Save current time
             }
-        } else if (previous_state[mode_mapping[YAW]] == HIGH) {                 // Input 10 changed from 1 to 0 (falling edge)
-            previous_state[mode_mapping[YAW]] = LOW;                            // Save current state
-            pulse_length[mode_mapping[YAW]] = current_time - timer[mode_mapping[YAW]];   // Calculate pulse duration & save it
+        } else if (previous_state[mode_mapping[ROLL]] == HIGH) {                 // Input 10 changed from 1 to 0 (falling edge)
+            previous_state[mode_mapping[ROLL]] = LOW;                            // Save current state
+            pulse_length[mode_mapping[ROLL]] = current_time - timer[mode_mapping[ROLL]];   // Calculate pulse duration & save it
         }
 
         // Channel 2 -------------------------------------------------
         //PB5= pin 11
         if (PINB & B00100000) {                                        // Is input 11 high ?
-            if (previous_state[mode_mapping[THROTTLE]] == LOW) {                     // Input 11 changed from 0 to 1 (rising edge)
-                previous_state[mode_mapping[THROTTLE]] = HIGH;                       // Save current state
-                timer[mode_mapping[THROTTLE]] = current_time;                        // Save current time
+            if (previous_state[mode_mapping[PITCH]] == LOW) {                     // Input 11 changed from 0 to 1 (rising edge)
+                previous_state[mode_mapping[PITCH]] = HIGH;                       // Save current state
+                timer[mode_mapping[PITCH]] = current_time;                        // Save current time
             }
-        } else if (previous_state[mode_mapping[THROTTLE]] == HIGH) {                 // Input 11 changed from 1 to 0 (falling edge)
-            previous_state[mode_mapping[THROTTLE]] = LOW;                            // Save current state
-            pulse_length[mode_mapping[THROTTLE]] = current_time - timer[mode_mapping[THROTTLE]];   // Calculate pulse duration & save it
+        } else if (previous_state[mode_mapping[PITCH]] == HIGH) {                 // Input 11 changed from 1 to 0 (falling edge)
+            previous_state[mode_mapping[PITCH]] = LOW;                            // Save current state
+            pulse_length[mode_mapping[PITCH]] = current_time - timer[mode_mapping[PITCH]];   // Calculate pulse duration & save it
         }
 
         // Channel 3 -------------------------------------------------
         //PB6= pin 12
         if (PINB & B01000000) {                                        // Is input 12 high ?
-            if (previous_state[mode_mapping[PITCH]] == LOW) {                     // Input 12 changed from 0 to 1 (rising edge)
-                previous_state[mode_mapping[PITCH]] = HIGH;                       // Save current state
-                timer[mode_mapping[PITCH]] = current_time;                        // Save current time
+            if (previous_state[mode_mapping[THROTTLE]] == LOW) {                     // Input 12 changed from 0 to 1 (rising edge)
+                previous_state[mode_mapping[THROTTLE]] = HIGH;                       // Save current state
+                timer[mode_mapping[THROTTLE]] = current_time;                        // Save current time
             }
-        } else if (previous_state[mode_mapping[PITCH]] == HIGH) {                 // Input 12 changed from 1 to 0 (falling edge)
-            previous_state[mode_mapping[PITCH]] = LOW;                            // Save current state
-            pulse_length[mode_mapping[PITCH]] = current_time - timer[mode_mapping[PITCH]];   // Calculate pulse duration & save it
+        } else if (previous_state[mode_mapping[THROTTLE]] == HIGH) {                 // Input 12 changed from 1 to 0 (falling edge)
+            previous_state[mode_mapping[THROTTLE]] = LOW;                            // Save current state
+            pulse_length[mode_mapping[THROTTLE]] = current_time - timer[mode_mapping[THROTTLE]];   // Calculate pulse duration & save it
         }
 
         // Channel 4 -------------------------------------------------
         //PB7= pin 13
         if (PINB & B10000000) {                                        // Is input 13 high ?
-            if (previous_state[mode_mapping[ROLL]] == LOW) {                     // Input 13 changed from 0 to 1 (rising edge)
-                previous_state[mode_mapping[ROLL]] = HIGH;                       // Save current state
-                timer[mode_mapping[ROLL]] = current_time;                        // Save current time
+            if (previous_state[mode_mapping[YAW]] == LOW) {                     // Input 13 changed from 0 to 1 (rising edge)
+                previous_state[mode_mapping[YAW]] = HIGH;                       // Save current state
+                timer[mode_mapping[YAW]] = current_time;                        // Save current time
             }
-        } else if (previous_state[mode_mapping[ROLL]] == HIGH) {                 // Input 13 changed from 1 to 0 (falling edge)
-            previous_state[mode_mapping[ROLL]] = LOW;                            // Save current state
-            pulse_length[mode_mapping[ROLL]] = current_time - timer[mode_mapping[ROLL]];   // Calculate pulse duration & save it
+        } else if (previous_state[mode_mapping[YAW]] == HIGH) {                 // Input 13 changed from 1 to 0 (falling edge)
+            previous_state[mode_mapping[YAW]] = LOW;                            // Save current state
+            pulse_length[mode_mapping[YAW]] = current_time - timer[mode_mapping[YAW]];   // Calculate pulse duration & save it
         }
 }
