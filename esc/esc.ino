@@ -1,19 +1,36 @@
 unsigned int  period = 4000; // Sampling period
 unsigned long loop_timer;
 unsigned long now, difference;
-
-unsigned long pulse_length_esc1 = 1200;
+#include <Servo.h>
+unsigned long pulse_length_esc1 = 1000;
 void setup() {
+  Serial.begin(115200);
   pinMode(8, OUTPUT);
+  /*digitalWrite(8, HIGH);
+  delayMicroseconds(1000);
+  digitalWrite(8, LOW);*/
+  delay(10000);
+  digitalWrite(13,1);
 }
 void loop() {
-  pulse_length_esc1 = pulse_length_esc1 + 10;
-  if (pulse_length_esc1 >= 2000) {
-    pulse_length_esc1 = 1200;
+  
+  
+  if (Serial.available()){
+    int val = Serial.parseInt(); 
+  
+  if(val < 1000 || val > 1900)
+  {
+    Serial.println("not valid");
   }
-  for (int i = 0; i < 100; i++) {
-    applyMotorSpeed();
+  else
+  {
+    pulse_length_esc1=val; // Send signal to ESC.
   }
+  }
+
+  applyMotorSpeed();
+  
+  
 
 }
 
